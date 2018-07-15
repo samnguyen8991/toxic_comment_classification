@@ -1,5 +1,5 @@
 # Toxic Comment Classification 
-Build a multi-headed RNN model that detects and classify six types of toxic comments: toxic, severe toxic, threats, obscene, insult and identity hate. Model is trained with a dataset of comments on Wikipedia's talk page edits. 
+Build a multi-headed RNN model that detects and classifies six types of toxic comments: toxic, severe toxic, threats, obscene, insult and identity hate. Model is trained with a dataset of comments on Wikipedia's talk page edits. 
 
 Test accuracy: 98.4%  
 AUC score: 0.987

@@ -1,7 +1,7 @@
 # Toxic Comment Classification 
 Build a multi-headed RNN model that detects and classify six types of toxic comments: toxic, severe toxic, threats, obscene, insult and identity hate. Model is trained with a dataset of comments on Wikipedia's talk page edits. 
 
-Test accuracy: 98.4%
+Test accuracy: 98.4%  
 AUC score: 0.987
 
 ## Dependencies 
@@ -28,7 +28,7 @@ Download pre-trained word vectors in Magnitude format by running:
 ```bash
 # FastText: 300-dim word vectors trained on Wikipedia 2017, UMBC webbase corpus and statmt.org news dataset (16B tokens)
 curl http://magnitude.plasticity.ai/fasttext+subword/wiki-news-300d-1M-subword.magnitude --output data/fasttext.magnitude
-# Glove: 200-dim word word vectors trained on Wikipedia 2014 and Gigaword 5 (6B tokens)
+# Glove: 200-dim word vectors trained on Wikipedia 2014 and Gigaword 5 (6B tokens)
 curl http://magnitude.plasticity.ai/glove+subword/glove.6B.200d.magnitude --output data/glove.magnitude
 ```
 

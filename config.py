@@ -6,8 +6,6 @@ TEST_PATH = 'data/test.csv'
 MAX_NUM_WORDS = 20000
 # the limit length of each comment text
 MAX_SEQ_LENGTH = 100
-# word-to-index mapping
-WORD_INDEX_PATH = 'data/word_index.p'
 # path to pre-trained word vectors
 FASTTEXT_PATH = 'data/fasttext.magnitude'
 GLOVE_PATH = 'data/glove.magnitude'

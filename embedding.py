@@ -38,12 +38,12 @@ def embed_matrix(X_train, X_test, Test_set, args):
     gl_vec = Magnitude(args.gl)
     concat_vec = Magnitude(ft_vec, gl_vec)
     
-    num_words = min(MAX_NUM_WORDS, len(word_index))
-    embedding_matrix = np.zeros((num_words, EMBEDDING_DIM))
+    # index 0 is not assigned to any word
+    embedding_matrix = np.zeros((MAX_NUM_WORDS+1, EMBEDDING_DIM))
     if not os.path.isfile(EMBEDDING_PATH):
         # embed words in embedding_matrix, which concatenates FastText and Glove word vectors
         for word, i in word_index.items():
-            if i >= MAX_NUM_WORDS:
+            if i > MAX_NUM_WORDS:
                 continue
             embedding_matrix[i] = concat_vec.query(word)
         with open(EMBEDDING_PATH, 'wb') as fp:

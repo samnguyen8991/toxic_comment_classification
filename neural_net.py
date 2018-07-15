@@ -13,7 +13,7 @@ class CommentClassifier:
     def build_model(self, embedding_matrix):
         # Layer 1: Embedding layer
         seq_input = Input(shape=(MAX_SEQ_LENGTH,))
-        x = Embedding(MAX_NUM_WORDS, EMBEDDING_DIM, weights=[embedding_matrix],
+        x = Embedding(MAX_NUM_WORDS+1, EMBEDDING_DIM, weights=[embedding_matrix],
                                     input_length=MAX_SEQ_LENGTH, trainable=False)(seq_input)
 
         # Layer 2: SpatialDropout1D, dropout rate 0.5 (default)

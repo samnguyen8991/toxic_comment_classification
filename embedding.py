@@ -29,17 +29,9 @@ def embed_matrix(X_train, X_test, Test_set, args):
     x_train = pad_sequences(X_train_seq, maxlen=MAX_SEQ_LENGTH)
     x_test = pad_sequences(X_test_seq, maxlen=MAX_SEQ_LENGTH)
     test_set = pad_sequences(Test_set_seq, maxlen=MAX_SEQ_LENGTH)
-
-    # word_index stores the word-to-index mapping
-    if not os.path.isfile(WORD_INDEX_PATH):
-        word_index = tokenizer.word_index
-        # save word_index of most common words to a file
-        with open(WORD_INDEX_PATH, 'wb') as fp:
-            pickle.dump(word_index, fp, protocol=pickle.HIGHEST_PROTOCOL)
-    else:
-        with open(WORD_INDEX_PATH, 'rb') as fp:
-            word_index = pickle.load(fp)
-        print("Number of unique tokens: {}".format(len(word_index)))
+    
+    word_index = tokenizer.word_index
+    print("Number of unique tokens: {}".format(len(word_index)))
 
     # load FastText and GLOVE pre-trained word vectors
     ft_vec = Magnitude(args.ft)

@@ -14,19 +14,19 @@ def parse_args():
     """
     parser = ArgumentParser()
     # preprocessing and embedding 
-    parser.add_argument('--t', type=float, default=0.8, help="fraction of data for testing")
+    parser.add_argument('--train_fraction', type=float, default=0.8, help="fraction of data for training")
     parser.add_argument('--ft', type=str, default=FASTTEXT_PATH, help='path of FastText word vectors')
-    parser.add_argument('-gl', type=str, default=GLOVE_PATH, help='path of Glove word vectors')
+    parser.add_argument('--gl', type=str, default=GLOVE_PATH, help='path of Glove word vectors')
     
     # model architecture
-    parser.add_argument('--lstm_unit', type=str, default=60, help='number of hidden units for LSTM layer')
-    parser.add_argument('--gru_unit', type=str, default=60, help='number of hidden units for GRU layer')
+    parser.add_argument('--lstm_unit', type=int, default=60, help='number of hidden units for LSTM layer')
+    parser.add_argument('--gru_unit', type=int, default=60, help='number of hidden units for GRU layer')
     parser.add_argument('--dropout', type=float, default=0.5, help='spatial dropout rate')
     parser.add_argument('--batch_size', type=int, default=32, help='batch size')
     parser.add_argument('--n_epochs', type=int, default=10, help='number of epochs')
-    parser.add_argument('--verbose', type=int, default=1, help='verbose: 0, 1, 2')
+    parser.add_argument('--verbose', type=int, default=1, help='0: silent, 1: progress bar, 2: 1 line per epoch')
     parser.add_argument('--save', type=str, help='path to save models')
-    parser.add_argument('--load', type=str, default='models/final_model.h5', help='path to load models')
+    parser.add_argument('--load', type=str, default=MODEL_PATH, help='path to load models')
     
     args = parser.parse_args()
     return args
@@ -52,12 +52,12 @@ def main():
     # evaluate model, metrics: binary accuracy
     loss, accuracy = neural_net.evaluate(x_test, Y_test)
     print("\n### EVALUATING ###")
-    print("Test accuracy: {}".format(accuracy*100))
+    print("Test accuracy: {:.1f}%".format(accuracy*100))
 
     # evaluate model, metrics: AUC score
     y_pred = neural_net.predict(x_test)
     roc_auc = roc_auc_score(Y_test, y_pred)
-    print("ROC-AUC score: {}".format(roc_auc))
+    print("ROC-AUC score: {:.3f}".format(roc_auc))
 
 if __name__ == "__main__":
     main()

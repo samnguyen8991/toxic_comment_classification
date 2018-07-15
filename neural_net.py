@@ -50,7 +50,7 @@ class CommentClassifier:
         self.neural_net.save(self.args.save)
 
     def load_model(self):
-        self.neural_net = load_model('models/final_model.h5')
+        self.neural_net = load_model(self.args.load)
 
     def predict(self, x):
         return self.neural_net.predict(x)

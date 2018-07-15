@@ -14,3 +14,5 @@ GLOVE_PATH = 'data/glove.magnitude'
 EMBEDDING_DIM = 500
 # path to embedding matrix
 EMBEDDING_PATH = 'data/embedding_matrix.p'
+# path to my trained model
+MODEL_PATH = 'models/final_model.h5'

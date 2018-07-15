@@ -40,6 +40,7 @@ class CommentClassifier:
         self.neural_net.compile(loss='binary_crossentropy',
                       optimizer='Adam',
                       metrics=['accuracy'])
+        print("\n### MODEL ARCHITECTURE ###")
         self.neural_net.summary()
         print()
     
@@ -49,8 +50,10 @@ class CommentClassifier:
         self.neural_net.save(self.args.save)
 
     def load_model(self):
-        self.neural_net = load_model(self.args.load)
+        self.neural_net = load_model('models/final_model.h5')
 
     def predict(self, x):
         return self.neural_net.predict(x)
-
+    
+    def evaluate(self, x_test, y_test):
+        return self.neural_net.evaluate(x_test, y_test, verbose=0)

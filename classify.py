@@ -26,15 +26,15 @@ def parse_args():
     parser.add_argument('--n_epochs', type=int, default=10, help='number of epochs')
     parser.add_argument('--verbose', type=int, default=1, help='verbose: 0, 1, 2')
     parser.add_argument('--save', type=str, help='path to save models')
-    parser.add_argument('--load', type=str, help='path to load models')
+    parser.add_argument('--load', type=str, default='models/final_model.h5', help='path to load models')
     
     args = parser.parse_args()
     return args
  
 def main():
     args = parse_args()
-    X_train, X_test, Y_train, Y_test, Test_set = load_data(args)
     print('### PREPROCESSING AND LOADING DATA ###')
+    X_train, X_test, Y_train, Y_test, Test_set = load_data(args)
     print ("Shape of x_train: {}, shape of x_test: {}".format(X_train.shape, X_test.shape))
     print ("Shape of y_train: {}, shape of y_test: {}".format(Y_train.shape, Y_test.shape))
 
@@ -42,8 +42,6 @@ def main():
     print("Shape of embedding matrix: {}".format(embedding_matrix.shape))
 
     # train or load model
-    if args.save == None and args.load == None:
-        raise Exception('usage: --save: path to save a newly-trained model; --load: path to load an old model')
     neural_net = CommentClassifier(args)
     if args.save:
         neural_net.build_model(embedding_matrix)
@@ -52,7 +50,7 @@ def main():
         neural_net.load_model()
 
     # evaluate model, metrics: binary accuracy
-    loss, accuracy = neural_net.evaluate(x_test, Y_test, verbose=0)
+    loss, accuracy = neural_net.evaluate(x_test, Y_test)
     print("\n### EVALUATING ###")
     print("Test accuracy: {}".format(accuracy*100))
 
